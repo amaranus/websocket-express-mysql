@@ -50,4 +50,46 @@ Bu kod bir WebSocket sunucusu oluşturan ve aynı zamanda Express.js kullanarak 
 11. **Sunucunun Başlatılması**:
     - `server.listen(3000, ...)` ile sunucu belirtilen portta (3000) dinlemeye başlar.
 
-NOT: İngilizce arayüz olarak tasarlanmıştır, isteyen başka bir dile çevirebilir.# websocket-express-mysql
+NOT: İngilizce arayüz olarak tasarlanmıştır, isteyen başka bir dile çevirebilir.
+
+### Veritabanı ve tabloları oluşturma
+SQL sorgularını **phpmayadmin** ortamında uygulayarak veritabanını oluşturun. **Bu chat uygulaması kurulan ortamda bir apache mysql server gerektirir.**
+
+1.Veritabanını oluşturma;
+
+    CREATE DATABASE `ws_express`
+
+2.Tabloları oluşturma;
+
+    CREATE TABLE `messages` 
+    ( 
+    `id` int NOT NULL AUTO_INCREMENT, 
+    `username` varchar(255) COLLATE utf8mb3_turkish_ci DEFAULT NULL, 
+    `message` text COLLATE utf8mb3_turkish_ci, 
+    `room` varchar(255) COLLATE utf8mb3_turkish_ci DEFAULT NULL, 
+    `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP, 
+    PRIMARY KEY (`id`) 
+    ) 
+    ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_turkish_ci
+   
+    CREATE TABLE `users` 
+    ( 
+    `id` int unsigned NOT NULL AUTO_INCREMENT, 
+    `username` varchar(255) COLLATE utf8mb3_turkish_ci DEFAULT NULL, 
+    `password` varchar(255) COLLATE utf8mb3_turkish_ci DEFAULT NULL, 
+    PRIMARY KEY (`id`), 
+    UNIQUE KEY `username` (`username`) 
+    ) 
+    ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_turkish_ci
+
+Son olarak;
+
+    npm install           
+    npm start
+
+ 
+Sunucu;
+
+    http://localhost:3000
+üzerinde çalışmaya başlar.
+
